@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,8 +9,8 @@ public class Player {
     private List<Card> cardsInHands;
     private String name;
 
-    public Player(List<Card> cardsInHands, String name) {
-        this.cardsInHands = cardsInHands;
+    public Player(String name) {
+        this.cardsInHands = new ArrayList();
         this.name = name;
     }
 
@@ -21,5 +22,7 @@ public class Player {
         return name;
     }
 
-
+    public void setName(String name) {
+        this.name = name;
+    }
 }
