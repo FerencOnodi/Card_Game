@@ -6,18 +6,14 @@ import java.util.Scanner;
  * Created by vajni on 2017.03.01..
  */
 public class Table implements Comparator {
-	XMLParser parser = new XMLParser();
+
+    XMLParser parser = new XMLParser();
     List<Player> table = new ArrayList<>();
     int numberOfPlayers;
 
     public Table(int numberOfPlayers) {
         this.numberOfPlayers = numberOfPlayers;
 
-    }
-
-    public void setNumberOfPlayers(int number){
-        this.numberOfPlayers = number;
-   
     }
 
     public void addPlayersToTable(){
@@ -30,19 +26,51 @@ public class Table implements Comparator {
     }
 
     public int compareByBoobSize(Player p1, Player p2) {
-        return 0;
+        if (p1.getCardsInHands().get(0).getBreastSize() > p2.getCardsInHands().get(0).getBreastSize()){
+            return 1;
+        }
+        else if (p1.getCardsInHands().get(0).getBreastSize() == p2.getCardsInHands().get(0).getBreastSize()){
+            return 0;
+        }
+        else{
+            return -1;
+        }
     }
 
     public int compareByAvailableHoles(Player p1, Player p2){
-        return 0;
+        if (p1.getCardsInHands().get(0).getUsableHoles() > p2.getCardsInHands().get(0).getUsableHoles()){
+            return 1;
+        }
+        else if (p1.getCardsInHands().get(0).getUsableHoles() > p2.getCardsInHands().get(0).getUsableHoles()){
+            return 0;
+        }
+        else{
+            return -1;
+        }
     }
 
     public int compareByCapacity(Player p1, Player p2) {
-        return 0;
+        if (p1.getCardsInHands().get(0).getPartnerCapacity() > p2.getCardsInHands().get(0).getPartnerCapacity()){
+            return 1;
+        }
+        else if (p1.getCardsInHands().get(0).getPartnerCapacity() > p2.getCardsInHands().get(0).getPartnerCapacity()){
+            return 0;
+        }
+        else{
+            return -1;
+        }
     }
 
     public int compareByPrice(Player p1, Player p2) {
-        return 0;
+        if (p1.getCardsInHands().get(0).getPrice() > p2.getCardsInHands().get(0).getPrice()){
+            return 1;
+        }
+        else if (p1.getCardsInHands().get(0).getPrice() > p2.getCardsInHands().get(0).getPrice()){
+            return 0;
+        }
+        else{
+            return -1;
+        }
     }
 
     @Override
@@ -53,7 +81,7 @@ public class Table implements Comparator {
     }
     public void handOutCards(){
     	if (numberOfPlayers == 2){
-    		parser.dealer.addCardsToPlayers(table.get(1), table.get(1));
+    		parser.dealer.addCardsToPlayers(table.get(0), table.get(1));
     	}else if( numberOfPlayers == 3){
     		parser.dealer.addCardsToPlayers(table.get(0), table.get(1), table.get(2));
     	}
