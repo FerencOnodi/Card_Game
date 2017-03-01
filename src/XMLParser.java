@@ -13,14 +13,14 @@ import org.w3c.dom.Element;
  */
 public class XMLParser {
 
-    private static final String filePath = "src/Cards.xml";
+    private static final String FILEPATH = "src/Cards.xml";
     private Map<String, Integer[]> cardData;
     private Integer[] values = new Integer[4];
 
 
     public void XmlParser() {
         try {
-            File inputFile = new File(filePath);
+            File inputFile = new File(FILEPATH);
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(inputFile);
