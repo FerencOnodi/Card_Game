@@ -36,7 +36,7 @@ public class XMLParser {
                 int price = Integer.valueOf(element.getElementsByTagName("price").item(0).getTextContent());
 
                 Card c = new Card(name, size, holes, partner, price);
-                dealer.deckList.add(c);
+                dealer.addCard(c);
             }
             System.out.println(dealer.deckList);
         } catch (Exception e){

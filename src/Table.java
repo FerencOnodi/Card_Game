@@ -6,16 +6,18 @@ import java.util.Scanner;
  * Created by vajni on 2017.03.01..
  */
 public class Table implements Comparator {
-
+	XMLParser parser = new XMLParser();
     List<Player> table = new ArrayList<>();
     int numberOfPlayers;
 
     public Table(int numberOfPlayers) {
         this.numberOfPlayers = numberOfPlayers;
+
     }
 
     public void setNumberOfPlayers(int number){
         this.numberOfPlayers = number;
+   
     }
 
     public void addPlayersToTable(){
@@ -48,5 +50,15 @@ public class Table implements Comparator {
         return "Table{" +
                 "player=" + table +
                 '}';
+    }
+    public void handOutCards(){
+    	if (numberOfPlayers == 2){
+    		parser.dealer.addCardsToPlayers(table.get(1), table.get(1));
+    	}else if( numberOfPlayers == 3){
+    		parser.dealer.addCardsToPlayers(table.get(0), table.get(1), table.get(2));
+    	}
+    	else if( numberOfPlayers == 4){
+    		parser.dealer.addCardsToPlayers(table.get(0), table.get(1), table.get(2), table.get(3));
+    	}
     }
 }
