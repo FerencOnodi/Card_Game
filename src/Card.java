@@ -4,12 +4,12 @@
 public class Card {
 
     private String name;
-    private byte breastSize;
-    private byte usableHoles;
-    private byte partnerCapacity;
-    private double price;
+    private int breastSize;
+    private int usableHoles;
+    private int partnerCapacity;
+    private int price;
 
-    public Card(String name, byte breastSize, byte usableHoles, byte partnerCapacity, double price) {
+    public Card(String name, int breastSize, int usableHoles, int partnerCapacity, int price) {
         this.name = name;
         this.breastSize = breastSize;
         this.usableHoles = usableHoles;
@@ -21,19 +21,19 @@ public class Card {
         return name;
     }
 
-    public byte getBreastSize() {
+    public int getBreastSize() {
         return breastSize;
     }
 
-    public byte getUsableHoles() {
+    public int getUsableHoles() {
         return usableHoles;
     }
 
-    public byte getPartnerCapacity() {
+    public int getPartnerCapacity() {
         return partnerCapacity;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
