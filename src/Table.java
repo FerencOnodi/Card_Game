@@ -37,11 +37,11 @@ public class Table implements Comparator {
         }
     }
 
-    public int compareByAvailableHoles(Player p1, Player p2){
-        if (p1.getCardsInHands().get(0).getUsableHoles() > p2.getCardsInHands().get(0).getUsableHoles()){
+    public int compareByAvailableHoles(Card c1, Card c2){
+        if (c1.getUsableHoles() > c2.getUsableHoles()){
             return 1;
         }
-        else if (p1.getCardsInHands().get(0).getUsableHoles() > p2.getCardsInHands().get(0).getUsableHoles()){
+        else if (c1.getUsableHoles() > c2.getUsableHoles()){
             return 0;
         }
         else{
@@ -49,11 +49,11 @@ public class Table implements Comparator {
         }
     }
 
-    public int compareByCapacity(Player p1, Player p2) {
-        if (p1.getCardsInHands().get(0).getPartnerCapacity() > p2.getCardsInHands().get(0).getPartnerCapacity()){
+    public int compareByCapacity(Card c1, Card c2) {
+        if (c1.getPartnerCapacity() > c2.getPartnerCapacity()){
             return 1;
         }
-        else if (p1.getCardsInHands().get(0).getPartnerCapacity() > p2.getCardsInHands().get(0).getPartnerCapacity()){
+        else if (c1.getPartnerCapacity() > c2.getPartnerCapacity()){
             return 0;
         }
         else{
@@ -61,11 +61,11 @@ public class Table implements Comparator {
         }
     }
 
-    public int compareByPrice(Player p1, Player p2) {
-        if (p1.getCardsInHands().get(0).getPrice() > p2.getCardsInHands().get(0).getPrice()){
+    public int compareByPrice(Card c1, Card c2) {
+        if (c1.getPrice() > c2.getPrice()){
             return 1;
         }
-        else if (p1.getCardsInHands().get(0).getPrice() > p2.getCardsInHands().get(0).getPrice()){
+        else if (c1.getPrice() > c2.getPrice()){
             return 0;
         }
         else{
