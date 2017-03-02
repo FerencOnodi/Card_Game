@@ -19,6 +19,15 @@ public class Printer {
         for (Card i:o) {System.out.println(i);}
     }
 
+    public void printWin() {
+        printNudeThree();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+        }
+        printNudeFour();
+    }
+
     public void printNudeOne(){
 
         System.out.println(",----------------------------------------------------------------------.-------------.");

@@ -2,19 +2,20 @@
  * Created by vajni on 2017.03.01..
  */
 public class Card {
-
+    private String type;
     private String name;
     private int breastSize;
     private int usableHoles;
     private int partnerCapacity;
     private int price;
 
-    public Card(String name, int breastSize, int usableHoles, int partnerCapacity, int price) {
+    public Card(String name, int breastSize, int usableHoles, int partnerCapacity, int price, String type) {
         this.name = name;
         this.breastSize = breastSize;
         this.usableHoles = usableHoles;
         this.partnerCapacity = partnerCapacity;
         this.price = price;
+        this.type = type;
     }
 
     public String getName() {
@@ -35,6 +36,10 @@ public class Card {
 
     public int getPrice() {
         return price;
+    }
+
+    public int hashCode() {
+        return this.type.hashCode();
     }
 
     @Override

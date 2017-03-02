@@ -32,8 +32,9 @@ public class XMLParser {
                 int holes = Integer.valueOf(element.getElementsByTagName("usableHoles").item(0).getTextContent());
                 int partner = Integer.valueOf(element.getElementsByTagName("partnerCapacity").item(0).getTextContent());
                 int price = Integer.valueOf(element.getElementsByTagName("price").item(0).getTextContent());
+                String type = element.getElementsByTagName("type").item(0).getTextContent();
 
-                Card c = new Card(name, size, holes, partner, price);
+                Card c = new Card(name, size, holes, partner, price, type);
                 dealer.addCard(c);
             }
         } catch (Exception e){

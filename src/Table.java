@@ -17,7 +17,6 @@ public class Table implements Comparator {
 
     public Table(int numberOfPlayers) {
         this.numberOfPlayers = numberOfPlayers;
-
     }
 
     public void addPlayersToTable(){
@@ -79,9 +78,10 @@ public class Table implements Comparator {
 
     @Override
     public String toString() {
-        return "Table{" +
-                "player=" + table +
-                '}';
+        return "Table{"
+				+ "player="
+				+ table
+				+ '}';
     }
     public void handOutCards(){
     	if (numberOfPlayers == 2){
@@ -101,7 +101,7 @@ public class Table implements Comparator {
     	
     	do {
     		try {
-    			System.out.println("Pick your option(number between 1 and 4)\n1. Breast size\n2. Usable holes\n3. Partner capacity\n4. Price");
+				printer.print("Pick your option(number between 1 and 4)\n1. Breast size\n2. Usable holes\n3. Partner capacity\n4. Price");
     			int number = sc.nextInt();
     			if(number > 0 && number < 5){
     				continueInput = false;
@@ -109,16 +109,12 @@ public class Table implements Comparator {
     			}
     			
     		} catch (InputMismatchException ex){
-    			System.out.println("Try again. (" +
+    			printer.print("Try again. (" +
     					"Incorrect input: an integer is required between 1 and 4.");
     			sc.nextLine();
     		}
     	} while (continueInput);
-    	//printer.print("Pick your option(number)\n1. Breast size\n2. Usable holes\n3. Partner capacity\n4. Price");
-    	//String n = sc.next();
-    	//int num =Integer.parseInt(n);
 		return 0;
-    	//return num;    	
     }
     
     
@@ -127,7 +123,6 @@ public class Table implements Comparator {
 			if(p.getCardsInHands().size() == check){
 				return true;
 			}
-
 		}
 		return false;
 	}
@@ -146,55 +141,59 @@ public class Table implements Comparator {
 	}
     
 	
-    public void game(){
-    	int allCards = parser.dealer.deckList.size();
-    	boolean quit = handChecker(allCards);
-    	int turn = 1;
+    public void game() {
+		int allCards = parser.dealer.deckList.size();
+		boolean quit = handChecker(allCards);
+		int turn = 1;
 		Player player1 = table.get(0);
 		Player player2 = table.get(1);
 		List<Card> player1Hand = player1.getCardsInHands();
 		List<Card> player2Hand = player2.getCardsInHands();
 
-    	while(quit == false){
-    		for(Player p: table){
-    			currentCards.add(p.getCardsInHands().get(0));
-    			p.getCardsInHands().remove(0);
-    		}
-    		if(turn == 1){
-    			printer.print("It's " + player1.getName() + "'s turn!\n");
-    			printer.printObject(currentCards.get(0));
-			}else{
+		while (quit == false) {
+			for (Player p : table) {
+				currentCards.add(p.getCardsInHands().get(0));
+				p.getCardsInHands().remove(0);
+			}
+			if (turn == 1) {
+				printer.print("It's " + player1.getName() + "'s turn!\n");
+				printer.printObject(currentCards.get(0));
+			} else {
 				printer.print("It's " + player2.getName() + "'s turn!\n");
 				printer.printObject(currentCards.get(1));
 			}
 
-    		int result = comparer(chooseAttribute());
+			int result = comparer(chooseAttribute());
 
-
-			
 			do {
-        		if(result == 1){
-        			player1Hand.add(currentCards.get(0));
-        			player1Hand.add(currentCards.get(1));
-        			turn = 1;
-        			
-        		} else if(result == -1){
-        			player2Hand.add(currentCards.get(0));
-        			player2Hand.add(currentCards.get(1));
-        			turn = 2;
+				if (result == 1) {
+					player1Hand.add(currentCards.get(0));
+					player1Hand.add(currentCards.get(1));
+					turn = 1;
 
-        		} else {
-        			printer.print("It is a tie! Choose another attribute to compare.");
-        			result = comparer(chooseAttribute());	
-        		}
-    		} while (result == 0);
-			
-			
-    		currentCards.clear();
-    		quit = handChecker(allCards);
+				} else if (result == -1) {
+					player2Hand.add(currentCards.get(0));
+					player2Hand.add(currentCards.get(1));
+					turn = 2;
 
-    	}
+				} else {
+					printer.print("It is a tie! Choose another attribute to compare.");
+					result = comparer(chooseAttribute());
+				}
+			} while (result == 0);
 
-    }
-    
+			currentCards.clear();
+			quit = handChecker(allCards);
+		}
+
+		if(allCards == player1Hand.size()) {
+			printer.print("The winner is: " + player1.getName());
+
+		} else {
+			printer.print("The winner is: " + player2.getName());
+		}
+
+		printer.print("\nYour reward is:\n");
+		printer.printWin();
+	}
 }
