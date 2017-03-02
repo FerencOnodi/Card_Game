@@ -1,6 +1,8 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+import java.lang.Exception;
 
 /**
  * Created by vajni on 2017.03.01..
@@ -94,10 +96,29 @@ public class Table implements Comparator {
     
     
     public int chooseAttribute(){
+    	boolean continueInput = true;
     	Scanner sc = new Scanner(System.in);
-    	printer.print("Pick your option(number)\n1. Breast size\n2. Usable holes\n3. Partner capacity\n4. Price");
-    	int n = sc.nextInt();
-    	return n;
+    	
+    	do {
+    		try {
+    			System.out.println("Pick your option(number between 1 and 4)\n1. Breast size\n2. Usable holes\n3. Partner capacity\n4. Price");
+    			int number = sc.nextInt();
+    			if(number > 0 && number < 5){
+    				continueInput = false;
+    				return number;
+    			}
+    			
+    		} catch (InputMismatchException ex){
+    			System.out.println("Try again. (" +
+    					"Incorrect input: an integer is required between 1 and 4.");
+    			sc.nextLine();
+    		}
+    	} while (continueInput);
+    	//printer.print("Pick your option(number)\n1. Breast size\n2. Usable holes\n3. Partner capacity\n4. Price");
+    	//String n = sc.next();
+    	//int num =Integer.parseInt(n);
+		return 0;
+    	//return num;    	
     }
     
     
@@ -127,30 +148,41 @@ public class Table implements Comparator {
 	
     public void game(){
     	int allCards = parser.dealer.deckList.size();
-    	System.out.println(allCards);
     	boolean quit = handChecker(allCards);
-    	
+    	int turn = 1;
+		Player player1 = table.get(0);
+		Player player2 = table.get(1);
+		List<Card> player1Hand = player1.getCardsInHands();
+		List<Card> player2Hand = player2.getCardsInHands();
+
     	while(quit == false){
     		for(Player p: table){
     			currentCards.add(p.getCardsInHands().get(0));
     			p.getCardsInHands().remove(0);
     		}
-    		printer.print("--------------------");
-    		printer.printList(currentCards);
-    		printer.print("--------------------");
+    		if(turn == 1){
+    			printer.print("It's " + player1.getName() + "'s turn!\n");
+    			printer.printObject(currentCards.get(0));
+			}else{
+				printer.print("It's " + player2.getName() + "'s turn!\n");
+				printer.printObject(currentCards.get(1));
+			}
+
     		int result = comparer(chooseAttribute());
-    		Player player1 = table.get(0);
-			Player player2 = table.get(1);
-			List<Card> player1Hand = player1.getCardsInHands();
-			List<Card> player2Hand = player2.getCardsInHands();
+
+
 			
 			do {
         		if(result == 1){
         			player1Hand.add(currentCards.get(0));
         			player1Hand.add(currentCards.get(1));
+        			turn = 1;
+        			
         		} else if(result == -1){
         			player2Hand.add(currentCards.get(0));
         			player2Hand.add(currentCards.get(1));
+        			turn = 2;
+
         		} else {
         			printer.print("It is a tie! Choose another attribute to compare.");
         			result = comparer(chooseAttribute());	
@@ -158,12 +190,9 @@ public class Table implements Comparator {
     		} while (result == 0);
 			
 			
-    		printer.printList(player1Hand);
-    		printer.print("--------------------");
-    		printer.printList(player2Hand);
     		currentCards.clear();
     		quit = handChecker(allCards);
-    		System.out.println(quit);
+
     	}
 
     }

@@ -14,9 +14,8 @@ public class Main {
         t.parser.XmlParser();
         t.addPlayersToTable();
         t.handOutCards();
-        //printer.printList(t.table.get(0).getCardsInHands());
-        //printer.printList(t.table.get(1).getCardsInHands());
         t.game();
 
     }
 }
+
