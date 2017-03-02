@@ -25,11 +25,11 @@ public class Table implements Comparator {
         }
     }
 
-    public int compareByBoobSize(Player p1, Player p2) {
-        if (p1.getCardsInHands().get(0).getBreastSize() > p2.getCardsInHands().get(0).getBreastSize()){
+    public int compareByBoobSize(Card c1, Card c2) {
+        if (c1.getBreastSize() > c2.getBreastSize()){
             return 1;
         }
-        else if (p1.getCardsInHands().get(0).getBreastSize() == p2.getCardsInHands().get(0).getBreastSize()){
+        else if (c1.getBreastSize() == c2.getBreastSize()){
             return 0;
         }
         else{
