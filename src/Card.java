@@ -39,13 +39,13 @@ public class Card {
 
     @Override
     public String toString() {
-        return "Card{" +
-                "Name =" + name +
-                " Breast size=" + breastSize +
-                " Usable holes=" + usableHoles +
-                " Partner capacity=" + partnerCapacity +
-                " Price=" + price +
-                '}';
+        String result =
+                "Name = " + name +"\n"+
+                "Breast size = " + breastSize +"\n"+
+                "Usable holes = " + usableHoles +"\n"+
+                "Partner capacity = " + partnerCapacity +"\n"+
+                "Price = " + price + "\n";
+        return result;
     }
 }
 
