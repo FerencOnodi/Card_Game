@@ -28,7 +28,7 @@ public class Dealer extends Deck{
 			p1.getCardsInHands().add(deckList.get(i));
 			p2.getCardsInHands().add(deckList.get(i+1));
 			p3.getCardsInHands().add(deckList.get(i+2));
-			p4.getCardsInHands().add(deckList.get(i+4));
+			p4.getCardsInHands().add(deckList.get(i+3));
 		}
 		
 	}
