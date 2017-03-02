@@ -21,8 +21,6 @@ public class XMLParser {
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(inputFile);
             doc.getDocumentElement().normalize();
-            System.out.println("Root Element: " + doc.getDocumentElement().getNodeName());
-            System.out.println("--------------");
 
             NodeList nList = doc.getElementsByTagName("Card");
             for (int temp = 0; temp < nList.getLength(); temp++) {
@@ -38,7 +36,6 @@ public class XMLParser {
                 Card c = new Card(name, size, holes, partner, price);
                 dealer.addCard(c);
             }
-            System.out.println(dealer.deckList);
         } catch (Exception e){
             e.printStackTrace();
         }

@@ -126,29 +126,44 @@ public class Table implements Comparator {
     
 	
     public void game(){
-    	int allCards = parser.dealer.deckList.size()-1;
-    	while(handChecker(allCards) != true){
+    	int allCards = parser.dealer.deckList.size();
+    	System.out.println(allCards);
+    	boolean quit = handChecker(allCards);
+    	
+    	while(quit == false){
     		for(Player p: table){
     			currentCards.add(p.getCardsInHands().get(0));
     			p.getCardsInHands().remove(0);
     		}
+    		printer.print("--------------------");
+    		printer.printList(currentCards);
+    		printer.print("--------------------");
     		int result = comparer(chooseAttribute());
-    		while (result == 0){
+    		Player player1 = table.get(0);
+			Player player2 = table.get(1);
+			List<Card> player1Hand = player1.getCardsInHands();
+			List<Card> player2Hand = player2.getCardsInHands();
+			
+			do {
         		if(result == 1){
-        			table.get(0).getCardsInHands().addAll(currentCards);
+        			player1Hand.add(currentCards.get(0));
+        			player1Hand.add(currentCards.get(1));
         		} else if(result == -1){
-        			table.get(1).getCardsInHands().addAll(currentCards);
+        			player2Hand.add(currentCards.get(0));
+        			player2Hand.add(currentCards.get(1));
         		} else {
         			printer.print("It is a tie! Choose another attribute to compare.");
-        			result = comparer(chooseAttribute());
-        			
+        			result = comparer(chooseAttribute());	
         		}
-    		}
-
-    			
-    		
-    		
-    		
+    		} while (result == 0);
+			
+			
+    		printer.printList(player1Hand);
+    		printer.print("--------------------");
+    		printer.printList(player2Hand);
+    		currentCards.clear();
+    		quit = handChecker(allCards);
+    		System.out.println(quit);
     	}
 
     }
