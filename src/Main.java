@@ -5,8 +5,10 @@ import java.util.Scanner;
  */
 public class Main {
     public static void main(String[] args) {
+        Printer printer = new Printer();
+
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the number of players(2/3/4): ");
+        printer.print("Enter the number of players(2/3/4): ");
         int number = scanner.nextInt();
 
         Table t = new Table(number);
