@@ -1,5 +1,3 @@
-import java.awt.*;
-import java.util.*;
 
 /**
  * Created by Zsolt on 2017.03.01..

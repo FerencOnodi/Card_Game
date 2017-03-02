@@ -46,10 +46,10 @@ public class Card {
     public String toString() {
         String result =
                 "Name = " + name +"\n"+
-                "Breast size = " + breastSize +"\n"+
+                "Breast size = " + breastSize + " ccm\n"+
                 "Usable holes = " + usableHoles +"\n"+
                 "Partner capacity = " + partnerCapacity +"\n"+
-                "Price = " + price + "\n";
+                "Price = " + price + " PLN\n";
         return result;
     }
 }
