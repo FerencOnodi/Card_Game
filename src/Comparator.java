@@ -3,8 +3,8 @@
  */
 public interface Comparator {
 
-    int compareByBoobSize(Player p1, Player p2);
-    int compareByAvailableHoles(Player p1, Player p2);
-    int compareByCapacity(Player p1, Player p2);
-    int compareByPrice(Player p1, Player p2);
+    int compareByBoobSize(Card c1, Card c2);
+    int compareByAvailableHoles(Card c1, Card c2);
+    int compareByCapacity(Card c1, Card c2);
+    int compareByPrice(Card c1, Card c2);
 }
