@@ -7,6 +7,10 @@ public class Printer {
         System.out.println(message);
     }
 
+    public void printObject(Object o) {
+        System.out.println(o);
+    }
+
     public void printNudeOne(){
 
         System.out.println(",----------------------------------------------------------------------.-------------.");
