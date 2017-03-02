@@ -1,3 +1,6 @@
+import java.awt.*;
+import java.util.*;
+
 /**
  * Created by Zsolt on 2017.03.01..
  */
@@ -9,6 +12,11 @@ public class Printer {
 
     public void printObject(Object o) {
         System.out.println(o);
+    }
+
+    public void printList(java.util.List<Card> o)
+    {
+        for (Card i:o) {System.out.println(i);}
     }
 
     public void printNudeOne(){
