@@ -41,7 +41,7 @@ public class Table implements Comparator {
         if (c1.getUsableHoles() > c2.getUsableHoles()){
             return 1;
         }
-        else if (c1.getUsableHoles() > c2.getUsableHoles()){
+        else if (c1.getUsableHoles() == c2.getUsableHoles()){
             return 0;
         }
         else{
@@ -53,7 +53,7 @@ public class Table implements Comparator {
         if (c1.getPartnerCapacity() > c2.getPartnerCapacity()){
             return 1;
         }
-        else if (c1.getPartnerCapacity() > c2.getPartnerCapacity()){
+        else if (c1.getPartnerCapacity() == c2.getPartnerCapacity()){
             return 0;
         }
         else{
@@ -62,10 +62,10 @@ public class Table implements Comparator {
     }
 
     public int compareByPrice(Card c1, Card c2) {
-        if (c1.getPrice() > c2.getPrice()){
+        if (c1.getPrice() < c2.getPrice()){
             return 1;
         }
-        else if (c1.getPrice() > c2.getPrice()){
+        else if (c1.getPrice() == c2.getPrice()){
             return 0;
         }
         else{
