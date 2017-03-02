@@ -103,7 +103,7 @@ public class Table implements Comparator {
     
 	public boolean handChecker(int check){
 		for(Player p : table){
-			if(p.getCardsInHands().size() > check){
+			if(p.getCardsInHands().size() == check){
 				return true;
 			}
 
