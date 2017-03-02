@@ -127,6 +127,17 @@ public class Table implements Comparator {
 		return false;
 	}
 	
+	public void decider(int t, Player p1, Player p2){
+		if (t == 1) {
+			printer.print("It's " + p1.getName() + "'s turn!\n");
+			printer.printObject(currentCards.get(0));
+		} else {
+			printer.print("It's " + p2.getName() + "'s turn!\n");
+			printer.printObject(currentCards.get(1));
+		}
+	}
+	
+	
 	
 	public int comparer(int attribute){
 		if(attribute == 1){
@@ -155,33 +166,45 @@ public class Table implements Comparator {
 				currentCards.add(p.getCardsInHands().get(0));
 				p.getCardsInHands().remove(0);
 			}
-			if (turn == 1) {
-				printer.print("It's " + player1.getName() + "'s turn!\n");
-				printer.printObject(currentCards.get(0));
-			} else {
-				printer.print("It's " + player2.getName() + "'s turn!\n");
-				printer.printObject(currentCards.get(1));
-			}
+			decider(turn,player1,player2);
 
 			int result = comparer(chooseAttribute());
 
-			do {
+			if (result == 1) {
+				player1Hand.add(currentCards.get(0));
+				player1Hand.add(currentCards.get(1));
+				turn = 1;
+
+			} else if (result == -1) {
+				player2Hand.add(currentCards.get(0));
+				player2Hand.add(currentCards.get(1));
+				turn = 2;
+
+			} else {
+				do{
+				printer.print("It is a tie! Choose another attribute to compare.\n");
+				
+				decider(turn,player1,player2);
+				
+				result = comparer(chooseAttribute());
+				
+				
+	;
 				if (result == 1) {
 					player1Hand.add(currentCards.get(0));
 					player1Hand.add(currentCards.get(1));
 					turn = 1;
 
-				} else if (result == -1) {
+				} else if (result == -1){
 					player2Hand.add(currentCards.get(0));
 					player2Hand.add(currentCards.get(1));
 					turn = 2;
+					}else{
+						
+					}
+				}while(result == 0);
 
-				} else {
-					printer.print("It is a tie! Choose another attribute to compare.");
-					result = comparer(chooseAttribute());
-				}
-			} while (result == 0);
-
+	}
 			currentCards.clear();
 			quit = handChecker(allCards);
 		}
