@@ -9,6 +9,8 @@ public class Table implements Comparator {
 
     XMLParser parser = new XMLParser();
     List<Player> table = new ArrayList<>();
+    List<Card> currentCards = new ArrayList<Card>();
+    Printer printer = new Printer();
     int numberOfPlayers;
 
     public Table(int numberOfPlayers) {
@@ -41,7 +43,7 @@ public class Table implements Comparator {
         if (c1.getUsableHoles() > c2.getUsableHoles()){
             return 1;
         }
-        else if (c1.getUsableHoles() > c2.getUsableHoles()){
+        else if (c1.getUsableHoles() == c2.getUsableHoles()){
             return 0;
         }
         else{
@@ -53,7 +55,7 @@ public class Table implements Comparator {
         if (c1.getPartnerCapacity() > c2.getPartnerCapacity()){
             return 1;
         }
-        else if (c1.getPartnerCapacity() > c2.getPartnerCapacity()){
+        else if (c1.getPartnerCapacity() == c2.getPartnerCapacity()){
             return 0;
         }
         else{
@@ -62,10 +64,10 @@ public class Table implements Comparator {
     }
 
     public int compareByPrice(Card c1, Card c2) {
-        if (c1.getPrice() > c2.getPrice()){
+        if (c1.getPrice() < c2.getPrice()){
             return 1;
         }
-        else if (c1.getPrice() > c2.getPrice()){
+        else if (c1.getPrice() == c2.getPrice()){
             return 0;
         }
         else{
@@ -89,4 +91,66 @@ public class Table implements Comparator {
     		parser.dealer.addCardsToPlayers(table.get(0), table.get(1), table.get(2), table.get(3));
     	}
     }
+    
+    
+    public int chooseAttribute(){
+    	Scanner sc = new Scanner(System.in);
+    	printer.print("Pick your option(number)\n1. Breast size\n2. Usable holes\n3. Partner capacity\n4. Price");
+    	int n = sc.nextInt();
+    	return n;
+    }
+    
+    
+	public boolean handChecker(int check){
+		for(Player p : table){
+			if(p.getCardsInHands().size() == check){
+				return true;
+			}
+
+		}
+		return false;
+	}
+	
+	
+	public int comparer(int attribute){
+		if(attribute == 1){
+			return compareByBoobSize(currentCards.get(0), currentCards.get(1));
+		} else if(attribute == 2){
+			return compareByAvailableHoles(currentCards.get(0), currentCards.get(1));
+		} else if(attribute == 3){
+			return compareByCapacity(currentCards.get(0), currentCards.get(1));
+		} else {
+			return compareByPrice(currentCards.get(0), currentCards.get(1));
+		}
+	}
+    
+	
+    public void game(){
+    	int allCards = parser.dealer.deckList.size()-1;
+    	while(handChecker(allCards) != true){
+    		for(Player p: table){
+    			currentCards.add(p.getCardsInHands().get(0));
+    			p.getCardsInHands().remove(0);
+    		}
+    		int result = comparer(chooseAttribute());
+    		while (result == 0){
+        		if(result == 1){
+        			table.get(0).getCardsInHands().addAll(currentCards);
+        		} else if(result == -1){
+        			table.get(1).getCardsInHands().addAll(currentCards);
+        		} else {
+        			printer.print("It is a tie! Choose another attribute to compare.");
+        			result = comparer(chooseAttribute());
+        			
+        		}
+    		}
+
+    			
+    		
+    		
+    		
+    	}
+
+    }
+    
 }
