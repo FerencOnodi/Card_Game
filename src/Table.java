@@ -22,7 +22,7 @@ public class Table implements Comparator {
     public void addPlayersToTable(){
         Scanner sc = new Scanner(System.in);
         for (int i=0; i<numberOfPlayers; i++) {
-            System.out.println(i+1 + ". játékos adja meg a nevét:");
+        	printer.print("Player "+ (i+1) + " enter your name:");
             Player p = new Player(sc.next());
             table.add(p);
         }
